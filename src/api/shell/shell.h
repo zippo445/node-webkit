@@ -37,8 +37,12 @@ class Shell {
                    const base::ListValue& arguments);
 
  private:
-  Shell();
-
+    Shell();
+    static void SetBadgeText(const std::string& badgeText);
+    static void RequestUserAttention ();
+    static void previewItem (const std::string& filePath);
+    static void notify (const std::string& title,const std::string& text,const std::string& icon,const std::string& sound);
+    
   DISALLOW_COPY_AND_ASSIGN(Shell);
 };
 

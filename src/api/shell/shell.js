@@ -27,5 +27,16 @@ exports.Shell = {
   },
   showItemInFolder: function(path) {
     nw.callStaticMethod('Shell', 'ShowItemInFolder', [ String(path) ]);
-  }
+  },
+  setBadgeText: function (badgeText){
+    nw.callStaticMethod('Shell','SetBadgeText',[String(badgeText)]);
+  },
+  requestUserAttention: function (){
+    nw.callStaticMethod('Shell','RequestUserAttention',[]);
+  },
+  previewItem: function (path){
+    nw.callStaticMethod('Shell','PreviewItem',[String(path)]);
+  },notify: function (title,text,icon,sound){
+    nw.callStaticMethod('Shell','Notify',[String(title),String(text),String(icon),String(sound)]);
+}
 };

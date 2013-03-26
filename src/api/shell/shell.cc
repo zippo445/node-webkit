@@ -35,14 +35,38 @@ void Shell::Call(const std::string& method,
     std::string uri;
     arguments.GetString(0, &uri);
     platform_util::OpenExternal(GURL(uri));
+      
   } else if (method == "OpenItem") {
     std::string full_path;
     arguments.GetString(0, &full_path);
     platform_util::OpenItem(FilePath::FromUTF8Unsafe(full_path));
+      
   } else if (method == "ShowItemInFolder") {
-    std::string full_path;
-    arguments.GetString(0, &full_path);
-    platform_util::ShowItemInFolder(FilePath::FromUTF8Unsafe(full_path));
+      std::string full_path;
+      arguments.GetString(0, &full_path);
+      platform_util::ShowItemInFolder(FilePath::FromUTF8Unsafe(full_path));
+      
+  }else if (method == "SetBadgeText") {
+      std::string badge_text;
+      arguments.GetString(0, &badge_text);
+      Shell::SetBadgeText(badge_text);
+      
+  }else if (method == "RequestUserAttention") {
+      Shell::RequestUserAttention();
+      
+  }else if (method == "PreviewItem") {
+      std::string full_path;
+      arguments.GetString(0, &full_path);
+      Shell::previewItem(full_path);
+      
+  }else if (method == "Notify") {
+      std::string title,text,icon,sound;
+      arguments.GetString(0, &title);
+      arguments.GetString(1, &text);
+      arguments.GetString(2, &icon);
+      arguments.GetString(3, &sound);
+      Shell::notify(title,text,icon,sound);
+      
   } else {
     NOTREACHED() << "Calling unknown method " << method << " of Shell";
   }
